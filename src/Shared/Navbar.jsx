@@ -17,63 +17,59 @@ const Navbar = () => {
     { href: "/courses", label: "Courses" },
     { href: "/contact", label: "Contact" },
   ];
-useEffect(() => {
-  const handleScroll = () => {
-    setScrolled(window.scrollY > 50);
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
 
-    if (location.pathname !== "/") return;
+      if (location.pathname !== "/") return;
 
-    const scrollPosition = window.scrollY;
+      const scrollPosition = window.scrollY;
 
-    links.forEach((link) => {
-      if (!link.href.startsWith("#")) return;
+      links.forEach((link) => {
+        if (!link.href.startsWith("#")) return;
 
-      const section = document.querySelector(link.href);
-      if (section) {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.offsetHeight;
+        const section = document.querySelector(link.href);
+        if (section) {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.offsetHeight;
 
-        if (
-          scrollPosition >= sectionTop - 100 &&
-          scrollPosition < sectionTop + sectionHeight - 100
-        ) {
-          setActiveLink(link.href);
+          if (
+            scrollPosition >= sectionTop - 100 &&
+            scrollPosition < sectionTop + sectionHeight - 100
+          ) {
+            setActiveLink(link.href);
+          }
         }
-      }
-    });
-  };
+      });
+    };
 
-  window.addEventListener("scroll", handleScroll);
-  return () => window.removeEventListener("scroll", handleScroll);
-}, [location.pathname]);
-
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [location.pathname]);
 
   const handleLinkClick = (href, e) => {
-  e.preventDefault();
-  setActiveLink(href);
-  setIsOpen(false);
+    e.preventDefault();
+    setActiveLink(href);
+    setIsOpen(false);
 
-  // Page route navigation
-  if (href.startsWith("/")) {
-    navigate(href);
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    return;
-  }
+    // Page route navigation
+    if (href.startsWith("/")) {
+      navigate(href);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
 
-  // Section scroll navigation (like #services)
-  const section = document.querySelector(href);
-  if (section) {
-    section.scrollIntoView({ behavior: "smooth" });
-  }
-};
-
+    // Section scroll navigation (like #services)
+    const section = document.querySelector(href);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-white backdrop-blur-md shadow-lg"
-          : "bg-transparent"
+        scrolled ? "bg-white backdrop-blur-md shadow-lg" : "bg-transparent"
       }`}
     >
       <div className="mx-auto px-6 md:px-12">
@@ -171,12 +167,10 @@ useEffect(() => {
                 {link.label}
               </a>
             ))}
-            <a
-              href="tel:01815109616"
-              className="flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white bg-linear-to-r from-sky-500 to-purple-600 rounded-xl shadow-md hover:opacity-90 transition-all"
-            >
-              <MdAddCall className="text-lg" /> 01815 109616
-            </a>
+
+            <button className="px-6 py-3 text-lg font-semibold text-white bg-linear-to-r from-sky-500 to-purple-600 rounded-xl shadow-md hover:opacity-90 transition-all">
+              Login
+            </button>
           </div>
         </div>
       </div>
