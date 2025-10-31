@@ -80,7 +80,7 @@ const Login = () => {
           <div className="mt-4">
             <button
               type="submit"
-              className="w-full py-2 text-white font-semibold bg-gradient-to-r from-blue-500 to-purple-500 hover:from-purple-500 hover:to-blue-500 rounded-lg shadow-lg transition-all duration-300 cursor-pointer"
+              className="w-full py-2 text-white font-semibold bg-linear-to-r from-blue-500 to-purple-500 hover:from-purple-500 hover:to-blue-500 rounded-lg shadow-lg transition-all duration-300 cursor-pointer"
             >
               Login
             </button>
