@@ -13,6 +13,7 @@ import {
 } from "react-icons/fa";
 import useAxiosPublic from "@/Hooks/useAxiosPublic";
 import { AuthContext } from "@/provider/AuthProvider";
+import { FaSliders } from "react-icons/fa6";
 
 const Dashboard = () => {
   const { user } = useContext(AuthContext);
@@ -37,8 +38,8 @@ const Dashboard = () => {
     userRole === "admin"
       ? [
           { to: "/", icon: <FaHome />, label: "Home" },
-          // { to: "/dashboard/allProducts", icon: <FaChartLine />, label: "Products" },
           { to: "/dashboard/allUsers", icon: <FaUsers />, label: "Users" },
+          { to: "/dashboard/allSliders", icon: <FaSliders />, label: "Sliders" },
           { to: "/dashboard/allCourses", icon: <FaReceipt />, label: "Courses" },
           { to: "/dashboard/settings", icon: <FaCog />, label: "Settings" },
         ]
@@ -155,7 +156,7 @@ const Dashboard = () => {
         {userRole === "admin"
           ? [
               { to: "/", icon: <FaHome />, label: "Home" },
-              { to: "/dashboard/allProducts", icon: <FaChartLine />, label: "Products" },
+              { to: "/dashboard/allSliders", icon: <FaChartLine />, label: "Sliders" },
               { to: "/dashboard/allOrders", icon: <FaReceipt />, label: "Orders" },
             ].map((item, idx) => (
               <NavLink

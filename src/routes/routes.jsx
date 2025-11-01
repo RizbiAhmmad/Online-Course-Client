@@ -6,6 +6,7 @@ import MainLayout from "@/Layouts/MainLayout";
 import AddSlider from "@/Pages/Dashboard/Admin/AddSlider";
 import AllSliders from "@/Pages/Dashboard/Admin/AllSliders";
 import AllUsers from "@/Pages/Dashboard/Admin/AllUsers";
+import Home from "@/Pages/Home/Home";
 import { createBrowserRouter } from "react-router-dom";
 
 export const router = createBrowserRouter([
@@ -15,7 +16,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        // element: <h1>Hiii</h1>
+        element: <Home></Home>
       },
       {
         path: "/courses",
