@@ -3,6 +3,7 @@ import Login from "@/Authentication/Login";
 import SignUp from "@/Authentication/SignUp";
 import Dashboard from "@/Layouts/Dashboard";
 import MainLayout from "@/Layouts/MainLayout";
+import AllUsers from "@/Pages/Dashboard/Admin/AllUsers";
 import { createBrowserRouter } from "react-router-dom";
 
 export const router = createBrowserRouter([
@@ -36,7 +37,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "allUsers",
-        element: <h1>hii</h1>
+        element: <AllUsers></AllUsers>,
       },
     ],
   },

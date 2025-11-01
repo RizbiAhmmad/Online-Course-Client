@@ -37,14 +37,14 @@ const Dashboard = () => {
     userRole === "admin"
       ? [
           { to: "/", icon: <FaHome />, label: "Home" },
-          { to: "/dashboard/allProducts", icon: <FaChartLine />, label: "Products" },
+          // { to: "/dashboard/allProducts", icon: <FaChartLine />, label: "Products" },
           { to: "/dashboard/allUsers", icon: <FaUsers />, label: "Users" },
-          { to: "/dashboard/allOrders", icon: <FaReceipt />, label: "Orders" },
+          { to: "/dashboard/allCourses", icon: <FaReceipt />, label: "Courses" },
           { to: "/dashboard/settings", icon: <FaCog />, label: "Settings" },
         ]
       : [
           { to: "/", icon: <FaHome />, label: "Home" },
-          { to: "/dashboard/myOrders", icon: <FaReceipt />, label: "My Orders" },
+          { to: "/dashboard/myCourses", icon: <FaReceipt />, label: "My Courses" },
           { to: "/dashboard/profile", icon: <FaUserCircle />, label: "Profile" },
         ];
 
@@ -63,7 +63,7 @@ const Dashboard = () => {
                 className={({ isActive }) =>
                   `flex items-center gap-3 px-3 py-2 rounded-lg transition-colors ${
                     isActive
-                      ? "bg-gradient-to-r from-red-500 to-green-500 text-white"
+                      ? "bg-linear-to-r from-sky-500 to-purple-500 text-white"
                       : "text-gray-700 hover:bg-gray-100"
                   }`
                 }
@@ -106,7 +106,7 @@ const Dashboard = () => {
                     className={({ isActive }) =>
                       `flex items-center gap-3 px-3 py-2 rounded-lg transition-colors ${
                         isActive
-                          ? "bg-gradient-to-r from-red-500 to-green-500 text-white"
+                          ? "bg-linear-to-r from-sky-500 to-purple-500 text-white"
                           : "text-gray-700 hover:bg-gray-100"
                       }`
                     }
@@ -132,7 +132,7 @@ const Dashboard = () => {
       {/* Main content */}
       <div className="flex-1 flex flex-col">
         {/* Top Navbar */}
-        <div className="sticky top-0 z-20 bg-white border-b border-gray-200 flex items-center justify-between px-4 py-4 shadow-sm">
+        <div className="sticky top-0 z-20 bg-sky-100 border-b border-gray-200 flex items-center justify-between px-4 py-4 shadow-sm">
           <button onClick={toggleSidebar} className="md:hidden">
             <FaBars className="text-xl text-gray-700" />
           </button>
