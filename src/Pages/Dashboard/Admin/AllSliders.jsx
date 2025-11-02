@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import { FaEdit, FaPlus, FaTrashAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import useAxiosPublic from "@/Hooks/useAxiosPublic";
+import { motion } from "framer-motion";
 
 const AllSliders = () => {
   const axiosPublic = useAxiosPublic();
@@ -93,16 +94,19 @@ const AllSliders = () => {
   };
 
   return (
-    <div className="max-w-6xl p-6 mx-auto">
-      <h2 className="pb-4 mb-8 text-4xl font-bold text-center border-b-2 border-gray-200">
-        All Sliders
+    <motion.div className="max-w-6xl p-6 mx-auto"
+    initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}>
+      <h2 className="text-4xl font-extrabold text-center mb-10 bg-linear-to-r from-sky-600 to-blue-600 bg-clip-text text-transparent">
+        Manage Sliders
       </h2>
 
       {/* Add Slider Button */}
       <div className="flex justify-end mb-4">
         <button
           onClick={() => navigate("/dashboard/addSlider")}
-          className="flex items-center gap-2 px-4 py-2 text-white bg-cyan-500 rounded hover:bg-cyan-600"
+          className="flex items-center gap-2 px-4 py-2 text-white bg-sky-500 rounded-xl hover:bg-sky-600"
         >
           <FaPlus /> Add Slider
         </button>
@@ -227,7 +231,7 @@ const AllSliders = () => {
           </div>
         </div>
       )}
-    </div>
+    </motion.div>
   );
 };
 
