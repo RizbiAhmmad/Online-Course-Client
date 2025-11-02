@@ -4,13 +4,13 @@ import { NavLink, Outlet } from "react-router-dom";
 import {
   FaHome,
   FaUsers,
-  FaChartLine,
   FaCog,
   FaBars,
   FaTimes,
   FaReceipt,
   FaUserCircle,
   FaBookReader,
+  FaListAlt,
 } from "react-icons/fa";
 import { FaSliders } from "react-icons/fa6";
 import useAxiosPublic from "@/Hooks/useAxiosPublic";
@@ -42,6 +42,7 @@ const Dashboard = () => {
       { to: "/", icon: <FaHome />, label: "Home" },
       { to: "/dashboard/allUsers", icon: <FaUsers />, label: "Users" },
       { to: "/dashboard/allSliders", icon: <FaSliders />, label: "Sliders" },
+      { to: "/dashboard/allCategories", icon: <FaListAlt />, label: "Categories" },
       { to: "/dashboard/allCourses", icon: <FaBookReader />, label: "Courses" },
       { to: "/dashboard/settings", icon: <FaCog />, label: "Settings" },
       { to: "/dashboard/profile", icon: <FaUserCircle />, label: "Profile" },

@@ -3,7 +3,9 @@ import Login from "@/Authentication/Login";
 import SignUp from "@/Authentication/SignUp";
 import Dashboard from "@/Layouts/Dashboard";
 import MainLayout from "@/Layouts/MainLayout";
+import AddCategory from "@/Pages/Dashboard/Admin/AddCategory";
 import AddSlider from "@/Pages/Dashboard/Admin/AddSlider";
+import AllCategories from "@/Pages/Dashboard/Admin/AllCategories";
 import AllSliders from "@/Pages/Dashboard/Admin/AllSliders";
 import AllUsers from "@/Pages/Dashboard/Admin/AllUsers";
 import Profile from "@/Pages/Dashboard/Admin/Profile";
@@ -50,6 +52,14 @@ export const router = createBrowserRouter([
       {
         path: "allSliders",
         element:<AllSliders></AllSliders>
+      },
+      {
+        path: "addCategory",
+        element:<AddCategory></AddCategory>
+      },
+      {
+        path: "allCategories",
+        element:<AllCategories></AllCategories>
       },
       {
         path: "profile",
