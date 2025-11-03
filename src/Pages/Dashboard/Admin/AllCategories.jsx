@@ -20,7 +20,8 @@ const AllCategories = () => {
 
   const navigate = useNavigate();
   const [localCategories, setLocalCategories] = useState([]);
-  const currentData = isDemo && localCategories.length ? localCategories : categories;
+  const currentData =
+    isDemo && localCategories.length ? localCategories : categories;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -56,11 +57,10 @@ const AllCategories = () => {
     e.preventDefault();
 
     try {
-
       if (isDemo) {
         const updated = currentData.map((cat) =>
           cat._id === selectedCategory._id
-            ? { ...cat, name: formData.name, status: formData.status}
+            ? { ...cat, name: formData.name, status: formData.status }
             : cat
         );
         setLocalCategories(updated);
@@ -112,8 +112,9 @@ const AllCategories = () => {
   };
 
   return (
-    <motion.div className="max-w-4xl p-6 mx-auto"
-    initial={{ opacity: 0, y: 20 }}
+    <motion.div
+      className="max-w-4xl p-6 mx-auto"
+      initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
@@ -153,7 +154,7 @@ const AllCategories = () => {
                 className="transition duration-200 hover:bg-gray-50"
               >
                 <td className="px-6 py-4">{indexOfFirst + index + 1}</td>
-                
+
                 <td className="px-6 py-4 font-semibold text-gray-800">
                   {cat.name}
                 </td>
@@ -180,10 +181,7 @@ const AllCategories = () => {
             ))}
             {currentData.length === 0 && (
               <tr>
-                <td
-                  colSpan="5"
-                  className="py-6 text-center text-gray-500"
-                >
+                <td colSpan="5" className="py-6 text-center text-gray-500">
                   No categories found.
                 </td>
               </tr>
@@ -248,7 +246,7 @@ const AllCategories = () => {
                   className="w-full p-2 border rounded"
                   required
                 />
-              </div>          
+              </div>
               <div>
                 <label className="block text-sm font-medium">Status</label>
                 <select

@@ -11,6 +11,7 @@ import {
   FaUserCircle,
   FaBookReader,
   FaListAlt,
+  FaUserGraduate,
 } from "react-icons/fa";
 import { FaSliders } from "react-icons/fa6";
 import useAxiosPublic from "@/Hooks/useAxiosPublic";
@@ -43,6 +44,7 @@ const Dashboard = () => {
       { to: "/dashboard/allUsers", icon: <FaUsers />, label: "Users" },
       { to: "/dashboard/allSliders", icon: <FaSliders />, label: "Sliders" },
       { to: "/dashboard/allCategories", icon: <FaListAlt />, label: "Categories" },
+      { to: "/dashboard/allInstructors", icon: <FaUserGraduate />, label: "Instructors" },
       { to: "/dashboard/allCourses", icon: <FaBookReader />, label: "Courses" },
       { to: "/dashboard/settings", icon: <FaCog />, label: "Settings" },
       { to: "/dashboard/profile", icon: <FaUserCircle />, label: "Profile" },

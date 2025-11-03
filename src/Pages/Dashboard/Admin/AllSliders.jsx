@@ -94,7 +94,7 @@ const AllSliders = () => {
   };
 
   return (
-    <motion.div className="max-w-6xl p-6 mx-auto"
+    <motion.div className="max-w-4xl p-6 mx-auto"
     initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}>
