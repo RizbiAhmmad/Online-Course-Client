@@ -40,7 +40,7 @@ const AddInstructor = () => {
       // Upload image to Cloudinary
       const cloudinaryData = new FormData();
       cloudinaryData.append("file", imageFile);
-      cloudinaryData.append("upload_preset", "eCommerce"); // তোমার preset নাম
+      cloudinaryData.append("upload_preset", "eCommerce");
 
       const cloudinaryRes = await axiosPublic.post(
         "https://api.cloudinary.com/v1_1/dt3bgis04/image/upload",
