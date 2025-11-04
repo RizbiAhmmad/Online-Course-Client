@@ -16,6 +16,7 @@ import {
 import { FaSliders } from "react-icons/fa6";
 import useAxiosPublic from "@/Hooks/useAxiosPublic";
 import { AuthContext } from "@/provider/AuthProvider";
+import LoadingPage from "@/Shared/LoadingPage";
 
 const Dashboard = () => {
   const { user } = useContext(AuthContext);
@@ -32,7 +33,7 @@ const Dashboard = () => {
     }
   }, [axiosPublic, user]);
 
-  if (!userRole) return <div>Loading...</div>;
+  if (!userRole) return <LoadingPage></LoadingPage>
 
   const toggleSidebar = () => setSidebarOpen((prev) => !prev);
 
