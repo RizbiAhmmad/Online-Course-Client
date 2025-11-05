@@ -14,6 +14,7 @@ import Home from "@/Pages/Home/Home";
 import { createBrowserRouter } from "react-router-dom";
 import AllInstructors from "../Pages/Dashboard/Admin/AllInstructors";
 import AddCourse from "@/Pages/Dashboard/Admin/AddCourse";
+import AllCourses from "@/Pages/Dashboard/Admin/AllCourses";
 
 export const router = createBrowserRouter([
   {
@@ -76,10 +77,10 @@ export const router = createBrowserRouter([
         path: "addCourse",
         element:<AddCourse></AddCourse>
       },
-      // {
-      //   path: "allCourses",
-      //   element:<AllCourses></AllCourses>
-      // },
+      {
+        path: "allCourses",
+        element:<AllCourses></AllCourses>
+      },
       {
         path: "profile",
         element:<Profile></Profile>

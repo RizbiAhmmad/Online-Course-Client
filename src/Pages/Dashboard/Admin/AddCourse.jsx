@@ -3,6 +3,7 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../../../provider/AuthProvider";
 import useAxiosPublic from "@/Hooks/useAxiosPublic";
 import { useNavigate } from "react-router-dom";
+import Select from "react-select";
 
 const AddCourse = () => {
   const { user } = useContext(AuthContext);
@@ -17,7 +18,7 @@ const AddCourse = () => {
   const [formData, setFormData] = useState({
     title: "",
     categoryId: "",
-    instructorId: "",
+    instructorIds: [],
     shortdescription: "",
     description: "",
     price: "",
@@ -27,6 +28,7 @@ const AddCourse = () => {
     status: "active",
   });
 
+  // Fetch active categories and instructors
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -35,7 +37,6 @@ const AddCourse = () => {
           axiosPublic.get("/instructors"),
         ]);
 
-        // Filter only active ones
         const activeCats = (catRes.data || []).filter(
           (cat) => cat.status === "active"
         );
@@ -52,14 +53,18 @@ const AddCourse = () => {
     fetchData();
   }, [axiosPublic]);
 
+  // Handle single input change
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+
+  // Handle image
   const handleImageChange = (e) => {
     setImageFile(e.target.files[0]);
   };
 
+  // Handle submit
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -67,10 +72,18 @@ const AddCourse = () => {
       return Swal.fire("Error", "Please select a thumbnail image", "error");
     }
 
+    if (formData.instructorIds.length === 0) {
+      return Swal.fire(
+        "Error",
+        "Please select at least one instructor",
+        "error"
+      );
+    }
+
     setLoading(true);
 
     try {
-      // Upload thumbnail to Cloudinary
+      // Upload to Cloudinary
       const cloudinaryData = new FormData();
       cloudinaryData.append("file", imageFile);
       cloudinaryData.append("upload_preset", "eCommerce");
@@ -79,17 +92,18 @@ const AddCourse = () => {
         "https://api.cloudinary.com/v1_1/dt3bgis04/image/upload",
         cloudinaryData
       );
+
       const imageUrl = cloudinaryRes.data.secure_url;
 
-      // Create course object
       const courseData = {
         ...formData,
+        price: Number(formData.price),
+        discountPrice: Number(formData.discountPrice),
         thumbnail: imageUrl,
         addedBy: user?.email,
         createdAt: new Date(),
       };
 
-      // Save to backend
       const res = await axiosPublic.post("/courses", courseData);
 
       if (res.data.insertedId) {
@@ -97,9 +111,11 @@ const AddCourse = () => {
         setFormData({
           title: "",
           categoryId: "",
-          instructorId: "",
+          instructorIds: [],
+          shortdescription: "",
           description: "",
           price: "",
+          discountPrice: "",
           duration: "",
           level: "Beginner",
           status: "active",
@@ -132,41 +148,45 @@ const AddCourse = () => {
           required
         />
 
-        <div className="grid grid-cols-2 gap-4">
-          {/* Category Dropdown */}
-          <select
-            name="categoryId"
-            value={formData.categoryId}
-            onChange={handleChange}
-            required
-            className="w-full px-4 py-2 border rounded"
-          >
-            <option value="">Select Category</option>
-            {categories.map((cat) => (
-              <option key={cat._id} value={cat._id}>
-                {cat.name}
-              </option>
-            ))}
-          </select>
+        {/* Category Dropdown */}
+        <select
+          name="categoryId"
+          value={formData.categoryId}
+          onChange={handleChange}
+          required
+          className="w-full px-4 py-2 border rounded"
+        >
+          <option value="">Select Category</option>
+          {categories.map((cat) => (
+            <option key={cat._id} value={cat._id}>
+              {cat.name}
+            </option>
+          ))}
+        </select>
 
-          {/* Instructor Dropdown */}
-          <select
-            name="instructorId"
-            value={formData.instructorId}
-            onChange={handleChange}
-            required
-            className="w-full px-4 py-2 border rounded"
-          >
-            <option value="">Select Instructor</option>
-            {instructors.map((inst) => (
-              <option key={inst._id} value={inst._id}>
-                {inst.name}
-              </option>
-            ))}
-          </select>
-        </div>
+        {/* Instructor Multi-Select (react-select style) */}
+        <label className="block mb-1 font-semibold">Select Instructor(s)</label>
+        <Select
+          isMulti
+          name="instructorIds"
+          options={instructors.map((inst) => ({
+            value: inst._id,
+            label: inst.name,
+          }))}
+          value={instructors
+            .filter((inst) => formData.instructorIds.includes(inst._id))
+            .map((inst) => ({ value: inst._id, label: inst.name }))}
+          className="basic-multi-select"
+          classNamePrefix="select"
+          onChange={(selected) =>
+            setFormData({
+              ...formData,
+              instructorIds: selected.map((opt) => opt.value),
+            })
+          }
+        />
 
-        {/* Description */}
+        {/* Descriptions */}
         <textarea
           name="shortdescription"
           placeholder="Short Description"
@@ -176,7 +196,6 @@ const AddCourse = () => {
           className="w-full px-4 py-2 border rounded"
           required
         />
-        {/* Description */}
         <textarea
           name="description"
           placeholder="Full Description"
@@ -187,7 +206,7 @@ const AddCourse = () => {
           required
         />
 
-        {/* Price & Duration */}
+        {/* Price & Discount */}
         <div className="grid grid-cols-2 gap-4">
           <input
             type="number"
@@ -209,6 +228,7 @@ const AddCourse = () => {
           />
         </div>
 
+        {/* Duration & Level */}
         <div className="grid grid-cols-2 gap-4">
           <input
             type="text"
@@ -219,8 +239,6 @@ const AddCourse = () => {
             className="w-full px-4 py-2 border rounded"
             required
           />
-
-          {/* Level */}
           <select
             name="level"
             value={formData.level}
