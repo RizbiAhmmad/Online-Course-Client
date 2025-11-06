@@ -142,7 +142,7 @@ const AllCourses = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <h2 className="text-4xl font-extrabold text-center mb-10 bg-linear-to-r from-sky-600 to-blue-600 bg-clip-text text-transparent">
+      <h2 className="text-4xl font-extrabold text-center mb-10 bg-linear-to-r from-sky-600 to-blue-600 bg-clip-text text-transparent leading-tight">
         Manage Courses
       </h2>
 
@@ -329,25 +329,24 @@ const AllCourses = () => {
                 />
               </div>
 
-        <div className="grid grid-cols-2 gap-4">
-<input
-                name="duration"
-                defaultValue={editingCourse.duration}
-                className="w-full border p-2 rounded"
-                placeholder="Duration"
-              />
+              <div className="grid grid-cols-2 gap-4">
+                <input
+                  name="duration"
+                  defaultValue={editingCourse.duration}
+                  className="w-full border p-2 rounded"
+                  placeholder="Duration"
+                />
 
-              <select
-                name="level"
-                defaultValue={editingCourse.level}
-                className="w-full border p-2 rounded"
-              >
-                <option value="Beginner">Beginner</option>
-                <option value="Intermediate">Intermediate</option>
-                <option value="Advanced">Advanced</option>
-              </select>
-        </div>
-              
+                <select
+                  name="level"
+                  defaultValue={editingCourse.level}
+                  className="w-full border p-2 rounded"
+                >
+                  <option value="Beginner">Beginner</option>
+                  <option value="Intermediate">Intermediate</option>
+                  <option value="Advanced">Advanced</option>
+                </select>
+              </div>
 
               <select
                 name="status"

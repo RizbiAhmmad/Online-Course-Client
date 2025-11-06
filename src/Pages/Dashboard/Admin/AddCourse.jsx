@@ -58,7 +58,6 @@ const AddCourse = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-
   // Handle image
   const handleImageChange = (e) => {
     setImageFile(e.target.files[0]);
