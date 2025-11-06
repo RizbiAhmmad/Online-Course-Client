@@ -15,6 +15,8 @@ import { createBrowserRouter } from "react-router-dom";
 import AllInstructors from "../Pages/Dashboard/Admin/AllInstructors";
 import AddCourse from "@/Pages/Dashboard/Admin/AddCourse";
 import AllCourses from "@/Pages/Dashboard/Admin/AllCourses";
+import AddReview from "@/Pages/Dashboard/Admin/AddReview";
+import AllReviews from "@/Pages/Dashboard/Admin/AllReviews";
 
 export const router = createBrowserRouter([
   {
@@ -80,6 +82,14 @@ export const router = createBrowserRouter([
       {
         path: "allCourses",
         element:<AllCourses></AllCourses>
+      },
+      {
+        path: "addReview",
+        element:<AddReview></AddReview>
+      },
+      {
+        path: "allReviews",
+        element:<AllReviews></AllReviews>
       },
       {
         path: "profile",

@@ -12,6 +12,7 @@ import {
   FaBookReader,
   FaListAlt,
   FaUserGraduate,
+  FaStar,
 } from "react-icons/fa";
 import { FaSliders } from "react-icons/fa6";
 import useAxiosPublic from "@/Hooks/useAxiosPublic";
@@ -47,6 +48,7 @@ const Dashboard = () => {
       { to: "/dashboard/allCategories", icon: <FaListAlt />, label: "Categories" },
       { to: "/dashboard/allInstructors", icon: <FaUserGraduate />, label: "Instructors" },
       { to: "/dashboard/allCourses", icon: <FaBookReader />, label: "Courses" },
+      { to: "/dashboard/allReviews", icon: <FaStar />, label: "Reviews" },
       { to: "/dashboard/settings", icon: <FaCog />, label: "Settings" },
       { to: "/dashboard/profile", icon: <FaUserCircle />, label: "Profile" },
     ];
