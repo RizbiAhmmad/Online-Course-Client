@@ -148,7 +148,7 @@ const Navbar = () => {
             {user ? (
               <button
                 onClick={handleLogOut}
-                className="hidden md:flex text-sm border border-gray-300 bg-red-500 px-3 py-2 rounded-md text-white hover:bg-red-600 items-center"
+                className="hidden md:flex text-md border border-gray-300 bg-red-500 px-3 py-2 rounded-md text-white hover:bg-red-600 items-center"
               >
                 Logout
               </button>
