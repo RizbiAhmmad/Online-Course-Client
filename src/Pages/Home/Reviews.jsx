@@ -23,7 +23,7 @@ const Reviews = () => {
 
   return (
     <section className="py-12 bg-white relative">
-      <div className="max-w-6xl px-4 mx-auto text-center">
+      <div className="max-w-7xl px-4 mx-auto text-center">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -53,7 +53,7 @@ const Reviews = () => {
             <SwiperSlide key={idx}>
               <motion.div
                 whileHover={{ scale: 1.02 }}
-                className="max-w-xl mx-auto bg-white rounded-2xl shadow-md p-8 border border-sky-100 h-full"
+                className="max-w-xl mx-auto bg-sky-50 rounded-2xl shadow-md p-8 border border-sky-100 h-full"
               >
                 <div className="flex flex-col items-center">
                   <img
