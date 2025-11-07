@@ -19,6 +19,8 @@ import AddReview from "@/Pages/Dashboard/Admin/AddReview";
 import AllReviews from "@/Pages/Dashboard/Admin/AllReviews";
 import AllFooterInfo from "@/Pages/Dashboard/Admin/AllFooterInfo";
 import AddFooterInfo from "@/Pages/Dashboard/Admin/AddFooterInfo";
+import About from "@/Pages/About/About";
+import Contact from "@/Pages/Home/Contact";
 
 export const router = createBrowserRouter([
   {
@@ -41,7 +43,15 @@ export const router = createBrowserRouter([
       {
         path: "/signup",
         element: <SignUp></SignUp>,
-      }
+      },
+      {
+        path: "/about",
+        element: <About></About>,
+      },
+      {
+        path: "/contact",
+        element: <Contact></Contact>,
+      },
     ],
   },
 

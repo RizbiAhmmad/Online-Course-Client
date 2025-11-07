@@ -41,87 +41,60 @@ export default function Footer() {
     return <p className="text-center text-gray-400">No footer data found.</p>;
 
   return (
-    <footer className="bg-gradient-to-r from-sky-700 via-blue-900 to-purple-800 text-white py-16 px-6 md:px-12 relative overflow-hidden">
-      {/* Decorative shapes */}
-      <div className="absolute top-0 left-0 w-72 h-72 bg-purple-500 opacity-20 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-500 opacity-20 rounded-full translate-x-1/3 translate-y-1/3"></div>
+    <footer className="relative overflow-hidden bg-gradient-to-b from-sky-900 via-blue-950 to-gray-950 text-white py-20 px-6 md:px-12">
+      {/* Decorative Gradients */}
+      <div className="absolute -top-32 -left-32 w-80 h-80 bg-sky-500 opacity-20 blur-3xl rounded-full"></div>
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-600 opacity-20 blur-3xl rounded-full"></div>
 
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 relative z-10">
-        {/* Logo & About */}
+        {/* Logo & Info */}
         <motion.div
-          className="space-y-4"
+          className="space-y-5"
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
         >
           <div className="flex items-center gap-3">
             <img
               src={footerInfo.logo}
-              alt={footerInfo.name || "Logo"}
-              className="h-12 w-auto rounded-lg shadow-lg"
+              alt={footerInfo.name}
+              className="h-14 w-14 rounded-full border-2 border-sky-400 shadow-xl"
             />
-            <h1 className="text-3xl font-bold">{footerInfo.name}</h1>
+            <h1 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-emerald-400">
+              {footerInfo.name}
+            </h1>
           </div>
-          <p className="text-gray-200">{footerInfo.description}</p>
-          <div className="flex gap-4 mt-2">
-            {footerInfo.facebook && (
-              <a
-                href={footerInfo.facebook}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition"
-              >
-                <FaFacebookF />
-              </a>
-            )}
-            {footerInfo.youtube && (
-              <a
-                href={footerInfo.youtube}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition"
-              >
-                <FaYoutube />
-              </a>
-            )}
-            {footerInfo.instagram && (
-              <a
-                href={footerInfo.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition"
-              >
-                <FaInstagram />
-              </a>
-            )}
-            {footerInfo.tiktok && (
-              <a
-                href={footerInfo.tiktok}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition"
-              >
-                <FaTiktok />
-              </a>
-            )}
-            {footerInfo.linkedin && (
-              <a
-                href={footerInfo.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition"
-              >
-                <FaLinkedinIn />
-              </a>
-            )}
-            {footerInfo.email && (
-              <a
-                href={`mailto:${footerInfo.email}`}
-                className="p-2 bg-white/10 rounded-full hover:bg-white/20 transition"
-              >
-                <FaEnvelope />
-              </a>
-            )}
+          <p className="text-gray-300 leading-relaxed">
+            {footerInfo.description}
+          </p>
+
+          {/* Social Links */}
+          <div className="flex gap-4 mt-4">
+            {[
+              { link: footerInfo.facebook, icon: <FaFacebookF /> },
+              { link: footerInfo.youtube, icon: <FaYoutube /> },
+              { link: footerInfo.instagram, icon: <FaInstagram /> },
+              { link: footerInfo.tiktok, icon: <FaTiktok /> },
+              { link: footerInfo.linkedin, icon: <FaLinkedinIn /> },
+              {
+                link: footerInfo.email ? `mailto:${footerInfo.email}` : null,
+                icon: <FaEnvelope />,
+              },
+            ]
+              .filter((s) => s.link)
+              .map((social, i) => (
+                <motion.a
+                  key={i}
+                  href={social.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.2, rotate: 5 }}
+                  className="p-2 bg-white/10 rounded-full hover:bg-gradient-to-r hover:from-sky-400 hover:to-emerald-400 hover:text-gray-900 transition-all duration-300"
+                >
+                  {social.icon}
+                </motion.a>
+              ))}
           </div>
         </motion.div>
 
@@ -129,84 +102,83 @@ export default function Footer() {
         <motion.div
           className="space-y-4"
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
         >
-          <h3 className="text-xl font-semibold mb-2">Quick Links</h3>
-          <ul className="space-y-2">
-            <li>
-              <Link to="/" className="hover:text-orange-400 transition">
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link to="/about" className="hover:text-orange-400 transition">
-                About Us
-              </Link>
-            </li>
-            <li>
-              <Link to="/contact" className="hover:text-orange-400 transition">
-                Contact
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/privacyPolicy"
-                className="hover:text-orange-400 transition"
-              >
-                Privacy Policy
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/ReturnAndRefundPolicy"
-                className="hover:text-orange-400 transition"
-              >
-                Return & Refund Policy
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/TermsAndConditions"
-                className="hover:text-orange-400 transition"
-              >
-                Terms & Conditions
-              </Link>
-            </li>
+          <h3 className="text-xl font-semibold border-l-4 border-sky-400 pl-3">
+            Quick Links
+          </h3>
+          <ul className="space-y-3 text-gray-300">
+            {[
+              { name: "Home", path: "/" },
+              { name: "About Us", path: "/about" },
+              { name: "Contact", path: "/contact" },
+              { name: "Privacy Policy", path: "/privacyPolicy" },
+              { name: "Return & Refund", path: "/ReturnAndRefundPolicy" },
+              { name: "Terms & Conditions", path: "/TermsAndConditions" },
+            ].map((item, i) => (
+              <li key={i}>
+                <Link
+                  to={item.path}
+                  className="group inline-flex items-center gap-2 hover:text-sky-400 transition"
+                >
+                  <span className="h-[2px] w-0 bg-sky-400 group-hover:w-3 transition-all"></span>
+                  {item.name}
+                </Link>
+              </li>
+            ))}
           </ul>
         </motion.div>
 
-        {/* Contact */}
+        {/* Contact Info */}
         <motion.div
           className="space-y-4"
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
+          viewport={{ once: true }}
         >
-          <h3 className="text-xl font-semibold mb-2">Contact</h3>
-          <ul className="space-y-3">
+          <h3 className="text-xl font-semibold border-l-4 border-emerald-400 pl-3">
+            Contact Info
+          </h3>
+          <ul className="space-y-3 text-gray-300">
             {footerInfo.phone && (
-              <li className="flex items-center gap-2 hover:text-orange-400 transition">
-                <FaPhone /> {footerInfo.phone}
+              <li className="flex items-center gap-3 hover:text-sky-400 transition">
+                <FaPhone className="text-sky-400" /> {footerInfo.phone}
               </li>
             )}
             {footerInfo.email && (
-              <li className="flex items-center gap-2 hover:text-orange-400 transition">
-                <FaEnvelope /> {footerInfo.email}
+              <li className="flex items-center gap-3 hover:text-sky-400 transition">
+                <FaEnvelope className="text-sky-400" /> {footerInfo.email}
               </li>
             )}
             {footerInfo.address && (
-              <li className="flex items-center gap-2 hover:text-orange-400 transition">
-                <FaMapMarkerAlt /> {footerInfo.address}
+              <li className="flex items-center gap-3 hover:text-sky-400 transition">
+                <FaMapMarkerAlt className="text-sky-400" />{" "}
+                {footerInfo.address}
               </li>
             )}
           </ul>
         </motion.div>
       </div>
 
-      <div className="border-t border-white/30 mt-12 pt-6 text-center text-sm text-gray-300 relative z-10">
-        © {new Date().getFullYear()} {footerInfo.name}. All rights reserved.
-      </div>
+      {/* Bottom Line */}
+      <motion.div
+        className="border-t border-white/20 mt-14 pt-6 text-center text-sm text-gray-400"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1 }}
+      >
+        <p>
+          © {new Date().getFullYear()} {footerInfo.name}. All Rights Reserved.
+        </p>
+        <p className="text-xs mt-1">
+          Crafted with 💙 by{" "}
+          <span className="text-sky-400 font-semibold">EduVerse</span>
+        </p>
+      </motion.div>
     </footer>
   );
 }

@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect, useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import logo from "../assets/EduVerse_Logo.png";
@@ -17,6 +16,24 @@ const Navbar = () => {
   const [role, setRole] = useState(null);
   const axiosPublic = useAxiosPublic();
 
+  // Add new state at the top
+  const [footerInfo, setFooterInfo] = useState(null);
+
+  // Fetch footer info
+  useEffect(() => {
+    const fetchFooterInfo = async () => {
+      try {
+        const res = await axiosPublic.get("/footer");
+        if (res.data.length > 0) {
+          setFooterInfo(res.data[0]);
+        }
+      } catch (err) {
+        console.error("Error fetching footer info:", err);
+      }
+    };
+    fetchFooterInfo();
+  }, [axiosPublic]);
+
   // Fetch user role
   useEffect(() => {
     if (user?.email) {
@@ -33,7 +50,7 @@ const Navbar = () => {
   const links = [
     { href: "/", label: "Home" },
     { href: "/about", label: "About" },
-    { href: "/courses", label: "Courses" },
+    // { href: "/courses", label: "Courses" },
     { href: "/contact", label: "Contact" },
   ];
 
@@ -102,12 +119,12 @@ const Navbar = () => {
               className="flex items-center space-x-3 cursor-pointer"
             >
               <img
-                src={logo}
-                alt="Logo"
+                src={footerInfo?.logo || logo}
+                alt={footerInfo?.name || "Logo"}
                 className="h-10 w-10 md:h-12 md:w-12 rounded-full object-cover border-2 border-white shadow-md"
               />
               <h1 className="text-2xl font-extrabold text-sky-400 tracking-wide hover:text-sky-500 transition-colors">
-                EduVerse
+                {footerInfo?.name || "EduVerse"}
               </h1>
             </div>
 

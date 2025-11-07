@@ -46,7 +46,7 @@ export default function Banner() {
 
   return (
     <div className="relative dark:bg-black w-full overflow-hidden pt-[100px]">
-      <div className="max-w-full mx-auto p-4 overflow-hidden relative">
+      <div className="max-w-8xl px-4 mx-auto overflow-hidden relative">
         <AnimatePresence mode="wait">
           <motion.img
             key={slides[current]._id}
