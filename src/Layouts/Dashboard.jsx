@@ -16,6 +16,7 @@ import {
   FaInfoCircle,
 } from "react-icons/fa";
 import { FaSliders } from "react-icons/fa6";
+import { MdPrivacyTip } from "react-icons/md";
 import useAxiosPublic from "@/Hooks/useAxiosPublic";
 import { AuthContext } from "@/provider/AuthProvider";
 import LoadingPage from "@/Shared/LoadingPage";
@@ -51,6 +52,7 @@ const Dashboard = () => {
       { to: "/dashboard/allCourses", icon: <FaBookReader />, label: "Courses" },
       { to: "/dashboard/allReviews", icon: <FaStar />, label: "Reviews" },
       { to: "/dashboard/FooterInfo", icon: <FaInfoCircle />, label: "Logo & Info" },
+      { to: "/dashboard/allPolicies", icon: <MdPrivacyTip />, label: "Policies" },
       { to: "/dashboard/settings", icon: <FaCog />, label: "Settings" },
       { to: "/dashboard/profile", icon: <FaUserCircle />, label: "Profile" },
     ];
