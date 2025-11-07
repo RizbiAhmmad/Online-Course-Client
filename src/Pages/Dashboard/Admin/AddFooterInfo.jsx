@@ -103,7 +103,7 @@ const AddFooterInfo = () => {
           <div className="flex items-center gap-4">
             <label
               htmlFor="logo"
-              className="px-4 py-2 text-white transition bg-cyan-500 rounded-lg shadow cursor-pointer hover:bg-cyan-600"
+              className="px-4 py-2 text-white transition bg-sky-500 rounded-lg shadow cursor-pointer hover:bg-sky-600"
             >
               Choose File
             </label>
@@ -209,7 +209,7 @@ const AddFooterInfo = () => {
         <button
           type="submit"
           disabled={loading}
-          className="w-full px-4 py-2 text-white bg-cyan-500 rounded hover:bg-cyan-600"
+          className="w-full px-4 py-2 text-white bg-sky-500 rounded-xl hover:bg-sky-600"
         >
           {loading ? "Submitting..." : "Add Information"}
         </button>

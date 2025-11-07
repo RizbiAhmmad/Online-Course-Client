@@ -17,6 +17,8 @@ import AddCourse from "@/Pages/Dashboard/Admin/AddCourse";
 import AllCourses from "@/Pages/Dashboard/Admin/AllCourses";
 import AddReview from "@/Pages/Dashboard/Admin/AddReview";
 import AllReviews from "@/Pages/Dashboard/Admin/AllReviews";
+import AllFooterInfo from "@/Pages/Dashboard/Admin/AllFooterInfo";
+import AddFooterInfo from "@/Pages/Dashboard/Admin/AddFooterInfo";
 
 export const router = createBrowserRouter([
   {
@@ -90,6 +92,14 @@ export const router = createBrowserRouter([
       {
         path: "allReviews",
         element:<AllReviews></AllReviews>
+      },
+      {
+        path: "addFooterInfo",
+        element: <AddFooterInfo />,
+      },
+      {
+        path: "FooterInfo",
+        element: <AllFooterInfo />,
       },
       {
         path: "profile",
