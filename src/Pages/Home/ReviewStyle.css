@@ -1,0 +1,42 @@
+/* Pagination dots fix */
+.mySwiper .swiper-pagination {
+  position: relative !important;
+  bottom: 0 !important;
+  margin-top: 20px;
+}
+
+/* Pagination dot color */
+.mySwiper .swiper-pagination-bullet {
+  background-color: #0ea5e9; /* sky-500 */
+  opacity: 0.5;
+}
+.mySwiper .swiper-pagination-bullet-active {
+  opacity: 1;
+}
+
+/* Navigation arrows */
+.mySwiper .swiper-button-next,
+.mySwiper .swiper-button-prev {
+  color: #0ea5e9; /* sky-500 */
+  top: 50% !important;
+  transform: translateY(-50%);
+}
+
+/* Adjust arrow distance from cards */
+@media (min-width: 768px) {
+  .mySwiper .swiper-button-next {
+    right: 10px;
+  }
+  .mySwiper .swiper-button-prev {
+    left: 10px;
+  }
+}
+
+@media (max-width: 767px) {
+  .mySwiper .swiper-button-next {
+    right: 5px;
+  }
+  .mySwiper .swiper-button-prev {
+    left: 5px;
+  }
+}

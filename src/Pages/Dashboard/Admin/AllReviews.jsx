@@ -3,9 +3,11 @@ import Swal from "sweetalert2";
 import { FaTrashAlt, FaStar, FaPlus } from "react-icons/fa";
 import { motion } from "framer-motion";
 import useAxiosPublic from "@/Hooks/useAxiosPublic";
+import { useNavigate } from "react-router-dom";
 
 const AllReviews = () => {
   const axiosPublic = useAxiosPublic();
+  const navigate = useNavigate();
 
   // Fetch Reviews
   const { data: reviews = [], refetch } = useQuery({
