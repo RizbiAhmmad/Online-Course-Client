@@ -21,6 +21,11 @@ import AllFooterInfo from "@/Pages/Dashboard/Admin/AllFooterInfo";
 import AddFooterInfo from "@/Pages/Dashboard/Admin/AddFooterInfo";
 import About from "@/Pages/About/About";
 import Contact from "@/Pages/Home/Contact";
+import AddPolicy from "@/Pages/Dashboard/Admin/AddPolicy";
+import AllPolicies from "@/Pages/Dashboard/Admin/AllPolicies";
+import PrivacyPolicy from "@/Pages/Home/PrivacyPolicy";
+import RefundPolicy from "@/Pages/Home/RefundPolicy";
+import TermsConditions from "@/Pages/Home/TermsConditions";
 
 export const router = createBrowserRouter([
   {
@@ -51,6 +56,18 @@ export const router = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact></Contact>,
+      },
+      {
+        path: "privacyPolicy",
+        element: <PrivacyPolicy />,
+      },
+      {
+        path: "ReturnAndRefundPolicy",
+        element: <RefundPolicy />,
+      },
+      {
+        path: "TermsAndConditions",
+        element: <TermsConditions />,
       },
     ],
   },
@@ -110,6 +127,14 @@ export const router = createBrowserRouter([
       {
         path: "FooterInfo",
         element: <AllFooterInfo />,
+      },
+      {
+        path: "addPolicy",
+        element: <AddPolicy />,
+      },
+      {
+        path: "allPolicies",
+        element: <AllPolicies />,
       },
       {
         path: "profile",

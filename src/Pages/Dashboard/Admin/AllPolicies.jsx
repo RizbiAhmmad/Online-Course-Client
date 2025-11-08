@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import { FaEdit, FaPlus, FaTrashAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import useAxiosPublic from "@/Hooks/useAxiosPublic";
+import { motion } from "framer-motion";
 
 const AllPolicies = () => {
   const axiosPublic = useAxiosPublic();
