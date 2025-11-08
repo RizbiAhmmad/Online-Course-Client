@@ -3,9 +3,11 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "@/Hooks/useAxiosPublic";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export default function CourseCard() {
   const axiosPublic = useAxiosPublic();
+  const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState("all");
 
   // Fetch categories
@@ -149,9 +151,13 @@ export default function CourseCard() {
                       </p>
                     )}
 
-                    <button className="bg-sky-600 hover:bg-sky-700 px-5 py-2 rounded-lg font-medium shadow transition-all">
-                      Details →
-                    </button>
+                    <button
+  onClick={() => navigate(`/course/${course._id}`)}
+  className="bg-sky-600 hover:bg-sky-700 px-5 py-2 rounded-lg font-medium shadow transition-all"
+>
+  Details →
+</button>
+
                   </div>
                 </motion.div>
               );

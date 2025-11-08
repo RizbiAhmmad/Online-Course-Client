@@ -176,7 +176,7 @@ export default function Footer() {
         </p>
         <p className="text-xs mt-1">
           Crafted with 💙 by{" "}
-          <span className="text-sky-400 font-semibold">EduVerse</span>
+          <span className="text-sky-400 font-semibold">BangladeshiIT</span>
         </p>
       </motion.div>
     </footer>

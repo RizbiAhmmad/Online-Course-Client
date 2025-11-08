@@ -1,4 +1,3 @@
-
 import Login from "@/Authentication/Login";
 import SignUp from "@/Authentication/SignUp";
 import Dashboard from "@/Layouts/Dashboard";
@@ -26,6 +25,7 @@ import AllPolicies from "@/Pages/Dashboard/Admin/AllPolicies";
 import PrivacyPolicy from "@/Pages/Home/PrivacyPolicy";
 import RefundPolicy from "@/Pages/Home/RefundPolicy";
 import TermsConditions from "@/Pages/Home/TermsConditions";
+import CourseDetails from "@/Pages/Courses/CourseDetails";
 
 export const router = createBrowserRouter([
   {
@@ -34,16 +34,19 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home></Home>
+        element: <Home></Home>,
       },
+      // {
+      //   path: "/courses",
+      //   element: <h1>Courses Page</h1>,
+      // },
       {
-        path: "/courses",
-        element: <h1>Courses Page</h1>
+        path: "/course/:id",
+        element: <CourseDetails />,
       },
-    
       {
         path: "/login",
-        element:<Login></Login>,
+        element: <Login></Login>,
       },
       {
         path: "/signup",
@@ -82,43 +85,43 @@ export const router = createBrowserRouter([
       },
       {
         path: "addSlider",
-        element:<AddSlider></AddSlider>
+        element: <AddSlider></AddSlider>,
       },
       {
         path: "allSliders",
-        element:<AllSliders></AllSliders>
+        element: <AllSliders></AllSliders>,
       },
       {
         path: "addCategory",
-        element:<AddCategory></AddCategory>
+        element: <AddCategory></AddCategory>,
       },
       {
         path: "allCategories",
-        element:<AllCategories></AllCategories>
+        element: <AllCategories></AllCategories>,
       },
       {
         path: "addInstructor",
-        element:<AddInstructor></AddInstructor>
+        element: <AddInstructor></AddInstructor>,
       },
       {
         path: "allInstructors",
-        element:<AllInstructors></AllInstructors>
+        element: <AllInstructors></AllInstructors>,
       },
       {
         path: "addCourse",
-        element:<AddCourse></AddCourse>
+        element: <AddCourse></AddCourse>,
       },
       {
         path: "allCourses",
-        element:<AllCourses></AllCourses>
+        element: <AllCourses></AllCourses>,
       },
       {
         path: "addReview",
-        element:<AddReview></AddReview>
+        element: <AddReview></AddReview>,
       },
       {
         path: "allReviews",
-        element:<AllReviews></AllReviews>
+        element: <AllReviews></AllReviews>,
       },
       {
         path: "addFooterInfo",
@@ -138,7 +141,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "profile",
-        element:<Profile></Profile>
+        element: <Profile></Profile>,
       },
     ],
   },

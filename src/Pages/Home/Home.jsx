@@ -1,9 +1,8 @@
 import React from 'react';
 import Banner from './Banner';
-import CourseCard from './CourseCard';
 import Reviews from './Reviews';
 import StatsSection from './StatsSection';
-import Footer from '@/Shared/Footer';
+import CourseCard from '../Courses/CourseCard';
 
 const Home = () => {
     return (
@@ -12,7 +11,6 @@ const Home = () => {
             <CourseCard></CourseCard>
             <Reviews></Reviews>
             <StatsSection></StatsSection>
-            <Footer></Footer>
         </div>
     );
 };
