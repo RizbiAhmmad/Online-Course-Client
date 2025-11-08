@@ -26,6 +26,7 @@ import PrivacyPolicy from "@/Pages/Home/PrivacyPolicy";
 import RefundPolicy from "@/Pages/Home/RefundPolicy";
 import TermsConditions from "@/Pages/Home/TermsConditions";
 import CourseDetails from "@/Pages/Courses/CourseDetails";
+import EnrollForm from "@/Pages/Courses/EnrollForm";
 
 export const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ export const router = createBrowserRouter([
       {
         path: "/course/:id",
         element: <CourseDetails />,
+      },
+      {
+        path: "/enroll/:id",
+        element: <EnrollForm />,
       },
       {
         path: "/login",

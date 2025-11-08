@@ -3,7 +3,6 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "@/Hooks/useAxiosPublic";
 import { motion } from "framer-motion";
 import { CheckCircle, Clock, User, GraduationCap } from "lucide-react";
-import Swal from "sweetalert2";
 
 export default function CourseDetails() {
   const { id } = useParams();
@@ -36,26 +35,15 @@ export default function CourseDetails() {
     course.instructorIds?.includes(inst._id)
   );
 
-  const handleEnroll = () => {
-    Swal.fire({
-      title: "Confirm Enrollment",
-      text: `Are you sure you want to enroll in "${course.title}"?`,
-      icon: "question",
-      showCancelButton: true,
-      confirmButtonColor: "#0ea5e9",
-      confirmButtonText: "Yes, Enroll Me!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire("Success", "You have been enrolled successfully!", "success");
-        navigate("/my-courses");
-      }
-    });
-  };
+const handleEnroll = () => {
+  navigate(`/enroll/${course._id}`, { state: { course } });
+};
+
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 lg:grid-cols-3 gap-10">
       {/* LEFT: Course Description + Instructors */}
-      <div className="lg:col-span-2 space-y-8">
+      <div className="order-2 lg:order-1 lg:col-span-2 space-y-8">
         {/* Title */}
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
@@ -66,13 +54,28 @@ export default function CourseDetails() {
         </motion.h1>
 
         {/* Description */}
+        {/* Course Description */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          className="prose max-w-none text-gray-700 dark:text-gray-300"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="relative bg-gradient-to-b from-sky-50/30 to-transparent dark:from-sky-900/20 
+             p-6 rounded-2xl border border-sky-100 dark:border-sky-800 shadow-sm"
         >
-          <p className="whitespace-pre-line">{course.description}</p>
+          {/* Accent bar */}
+          <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-sky-500 via-sky-400 to-sky-600 rounded-l-lg" />
+
+          <h2 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-white flex items-center gap-2">
+            <span className="bg-gradient-to-r from-sky-500 to-sky-700 bg-clip-text text-transparent">
+              Course Overview
+            </span>
+          </h2>
+
+          <div className="prose max-w-none prose-sky dark:prose-invert leading-relaxed text-justify">
+            <p className="whitespace-pre-line text-gray-700 dark:text-gray-300">
+              {course.description}
+            </p>
+          </div>
         </motion.div>
 
         {/* Instructor Section */}
@@ -133,7 +136,7 @@ export default function CourseDetails() {
       </div>
 
       {/* RIGHT: Course Card + Enroll */}
-      <div>
+      <div className="order-1 lg:order-2">
         <motion.div
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}

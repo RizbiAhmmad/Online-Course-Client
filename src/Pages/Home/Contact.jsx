@@ -100,7 +100,7 @@ const Contact = () => {
             transition={{ duration: 0.3 }}
             className="relative bg-white/70 dark:bg-gray-800/60 backdrop-blur-lg border border-white/40 dark:border-gray-700 rounded-2xl shadow-lg p-8 flex flex-col items-center group"
           >
-            <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-sky-400 via-emerald-400 to-sky-500 opacity-0 group-hover:opacity-100 blur-md transition duration-500"></div>
+            <div className="absolute inset-0 rounded-2xl bg-sky-100 opacity-0 group-hover:opacity-100 blur-md transition duration-500"></div>
             <div className="relative z-10 flex flex-col items-center">
               {item.icon}
               <h3 className="text-xl font-semibold mt-4">{item.title}</h3>
