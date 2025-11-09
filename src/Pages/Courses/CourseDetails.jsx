@@ -2,7 +2,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "@/Hooks/useAxiosPublic";
 import { motion } from "framer-motion";
-import { CheckCircle, Clock, User, GraduationCap } from "lucide-react";
+import { CheckCircle, Clock, GraduationCap } from "lucide-react";
+import LoadingPage from "@/Shared/LoadingPage";
 
 export default function CourseDetails() {
   const { id } = useParams();
@@ -27,7 +28,7 @@ export default function CourseDetails() {
     },
   });
 
-  if (isLoading) return <p className="text-center py-10">Loading...</p>;
+  if (isLoading) return <LoadingPage></LoadingPage>;
   if (!course) return <p className="text-center py-10">Course not found.</p>;
 
   // Filter instructors for this course
@@ -41,7 +42,7 @@ const handleEnroll = () => {
 
 
   return (
-    <div className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 lg:grid-cols-3 gap-10">
+    <div className="max-w-7xl mx-auto px-6 py-20 grid grid-cols-1 lg:grid-cols-3 gap-10">
       {/* LEFT: Course Description + Instructors */}
       <div className="order-2 lg:order-1 lg:col-span-2 space-y-8">
         {/* Title */}
@@ -53,20 +54,19 @@ const handleEnroll = () => {
           {course.title}
         </motion.h1>
 
-        {/* Description */}
         {/* Course Description */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="relative bg-gradient-to-b from-sky-50/30 to-transparent dark:from-sky-900/20 
+          className="relative bg-linear-to-b from-sky-50/30 to-transparent dark:from-sky-900/20 
              p-6 rounded-2xl border border-sky-100 dark:border-sky-800 shadow-sm"
         >
           {/* Accent bar */}
-          <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-sky-500 via-sky-400 to-sky-600 rounded-l-lg" />
+          <div className="absolute top-0 left-0 w-1 h-full bg-linear-to-b from-sky-500 via-sky-400 to-sky-600 rounded-l-lg" />
 
           <h2 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-white flex items-center gap-2">
-            <span className="bg-gradient-to-r from-sky-500 to-sky-700 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-sky-500 to-sky-700 bg-clip-text text-transparent">
               Course Overview
             </span>
           </h2>
@@ -91,13 +91,13 @@ const handleEnroll = () => {
                   key={inst._id || i}
                   whileHover={{ scale: 1.05, y: -5 }}
                   transition={{ duration: 0.3 }}
-                  className="relative bg-gradient-to-b from-white to-sky-50 dark:from-gray-800 dark:to-gray-900 
+                  className="relative bg-linear-to-b from-white to-sky-50 dark:from-gray-800 dark:to-gray-900 
                      p-6 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 
                      hover:shadow-sky-200/50 dark:hover:shadow-sky-500/30 
                      text-center overflow-hidden"
                 >
                   {/* Subtle overlay accent */}
-                  <div className="absolute inset-x-0 top-0 h-2 bg-gradient-to-r from-sky-500 via-sky-400 to-sky-600 rounded-t-2xl" />
+                  <div className="absolute inset-x-0 top-0 h-2 bg-linear-to-r from-sky-500 via-sky-400 to-sky-600 rounded-t-2xl" />
 
                   {/* Instructor Image */}
                   <div className="relative w-28 h-28 mx-auto mb-4">
@@ -123,7 +123,7 @@ const handleEnroll = () => {
 
                   {/* Optional subtle animation effect */}
                   <motion.div
-                    className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-sky-400 to-transparent"
+                    className="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-transparent via-sky-400 to-transparent"
                     initial={{ scaleX: 0 }}
                     whileInView={{ scaleX: 1 }}
                     transition={{ duration: 0.8, delay: 0.3 }}
@@ -140,7 +140,7 @@ const handleEnroll = () => {
         <motion.div
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="bg-gradient-to-b from-[#0e1629] to-[#1b2738] text-white rounded-2xl shadow-xl overflow-hidden border border-gray-700 sticky top-20"
+          className="bg-linear-to-b from-[#0e1629] to-[#1b2738] text-white rounded-2xl shadow-xl overflow-hidden border border-gray-700 sticky top-20"
         >
           <img
             src={course.thumbnail}

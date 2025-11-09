@@ -27,6 +27,7 @@ import RefundPolicy from "@/Pages/Home/RefundPolicy";
 import TermsConditions from "@/Pages/Home/TermsConditions";
 import CourseDetails from "@/Pages/Courses/CourseDetails";
 import EnrollForm from "@/Pages/Courses/EnrollForm";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -47,7 +48,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/enroll/:id",
-        element: <EnrollForm />,
+        element: <PrivateRoute><EnrollForm /></PrivateRoute>,
       },
       {
         path: "/login",

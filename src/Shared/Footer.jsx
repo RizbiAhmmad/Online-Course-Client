@@ -41,7 +41,7 @@ export default function Footer() {
     return <p className="text-center text-gray-400">No footer data found.</p>;
 
   return (
-    <footer className="relative overflow-hidden bg-gradient-to-b from-sky-900 via-blue-950 to-gray-950 text-white py-20 px-6 md:px-12">
+    <footer className="relative overflow-hidden bg-linear-to-b from-sky-900 via-blue-950 to-gray-950 text-white py-20 px-6 md:px-12">
       {/* Decorative Gradients */}
       <div className="absolute -top-32 -left-32 w-80 h-80 bg-sky-500 opacity-20 blur-3xl rounded-full"></div>
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-600 opacity-20 blur-3xl rounded-full"></div>
@@ -61,7 +61,7 @@ export default function Footer() {
               alt={footerInfo.name}
               className="h-14 w-14 rounded-full border-2 border-sky-400 shadow-xl"
             />
-            <h1 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-emerald-400">
+            <h1 className="text-3xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-sky-400 to-emerald-400">
               {footerInfo.name}
             </h1>
           </div>
@@ -90,7 +90,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.2, rotate: 5 }}
-                  className="p-2 bg-white/10 rounded-full hover:bg-gradient-to-r hover:from-sky-400 hover:to-emerald-400 hover:text-gray-900 transition-all duration-300"
+                  className="p-2 bg-white/10 rounded-full hover:bg-linear-to-r hover:from-sky-400 hover:to-emerald-400 hover:text-gray-900 transition-all duration-300"
                 >
                   {social.icon}
                 </motion.a>
@@ -123,7 +123,7 @@ export default function Footer() {
                   to={item.path}
                   className="group inline-flex items-center gap-2 hover:text-sky-400 transition"
                 >
-                  <span className="h-[2px] w-0 bg-sky-400 group-hover:w-3 transition-all"></span>
+                  <span className="h-0.5 w-0 bg-sky-400 group-hover:w-3 transition-all"></span>
                   {item.name}
                 </Link>
               </li>

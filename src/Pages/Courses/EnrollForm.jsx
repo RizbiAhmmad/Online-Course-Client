@@ -1,9 +1,10 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { useParams, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import Swal from "sweetalert2";
 import useAxiosPublic from "@/Hooks/useAxiosPublic";
 import { AuthContext } from "@/provider/AuthProvider";
+import LoadingPage from "@/Shared/LoadingPage";
 
 export default function CheckoutPage() {
   const { id } = useParams();
@@ -11,8 +12,14 @@ export default function CheckoutPage() {
   const axiosPublic = useAxiosPublic();
   const { user } = useContext(AuthContext);
 
-  // Get passed course data
   const passedCourse = location.state?.course;
+  const [course, setCourse] = useState(passedCourse || null);
+
+  useEffect(() => {
+    if (!course && id) {
+      axiosPublic.get(`/courses/${id}`).then((res) => setCourse(res.data));
+    }
+  }, [id, course, axiosPublic]);
 
   const [formData, setFormData] = useState({
     name: user?.displayName || "",
@@ -23,17 +30,22 @@ export default function CheckoutPage() {
     agree: false,
   });
 
-  const [course] = useState(passedCourse || {});
-
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: type === "checkbox" ? checked : value }));
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.agree) {
-      Swal.fire("Please Agree", "You must agree to the terms & conditions.", "info");
+      Swal.fire(
+        "Please Agree",
+        "You must agree to the terms & conditions.",
+        "info"
+      );
       return;
     }
 
@@ -41,8 +53,9 @@ export default function CheckoutPage() {
       await axiosPublic.post("/enrollments", {
         ...formData,
         courseId: id,
-        courseTitle: course.title,
-        coursePrice: course.discountPrice > 0 ? course.discountPrice : course.price,
+        courseTitle: course?.title,
+        coursePrice:
+          course?.discountPrice > 0 ? course.discountPrice : course?.price,
         date: new Date(),
       });
       Swal.fire("Success!", "Enrollment successful!", "success");
@@ -50,6 +63,9 @@ export default function CheckoutPage() {
       Swal.fire("Error", "Something went wrong!", "error");
     }
   };
+
+  // Loading state
+  if (!course) return <LoadingPage></LoadingPage>;
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 py-20 px-6 flex justify-center">
@@ -116,7 +132,7 @@ export default function CheckoutPage() {
                 +88
               </span>
               <input
-                type="tel"
+                type="number"
                 name="phone"
                 value={formData.phone}
                 onChange={handleChange}
@@ -143,41 +159,8 @@ export default function CheckoutPage() {
               className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 focus:ring-2 focus:ring-sky-400 outline-none"
             />
           </div>
-        </motion.form>
 
-        {/* Right Side: Summary */}
-        <motion.div
-          initial={{ opacity: 0, x: 30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          className="bg-gray-100 dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700"
-        >
-          <h3 className="text-xl font-semibold text-sky-600 mb-4">
-            {course.title || "Course Title"}
-          </h3>
-
-          <div className="text-gray-700 dark:text-gray-300 space-y-2">
-            <div className="flex justify-between">
-              <span>Course Fee</span>
-              <span>
-                {course.discountPrice > 0 ? course.discountPrice : course.price} BDT
-              </span>
-            </div>
-            <div className="flex justify-between">
-              <span>Discount</span>
-              <span>
-                {course.discountPrice ? course.price - course.discountPrice : 0} BDT
-              </span>
-            </div>
-            <hr className="my-2 border-gray-300 dark:border-gray-700" />
-            <div className="flex justify-between font-semibold text-gray-900 dark:text-gray-100">
-              <span>Total</span>
-              <span className="text-sky-600">
-                {course.discountPrice > 0 ? course.discountPrice : course.price} BDT
-              </span>
-            </div>
-          </div>
-
+          {/* Terms checkbox */}
           <div className="mt-6">
             <label className="flex items-center gap-2 text-gray-700 dark:text-gray-300 text-sm">
               <input
@@ -189,27 +172,75 @@ export default function CheckoutPage() {
               />
               <span>
                 I agree to the{" "}
-                <a href="#" className="text-sky-500 hover:underline">
+                <a
+                  href="/TermsAndConditions"
+                  className="text-sky-500 hover:underline"
+                >
                   terms & conditions
                 </a>
                 ,{" "}
-                <a href="#" className="text-sky-500 hover:underline">
+                <a
+                  href="/ReturnAndRefundPolicy"
+                  className="text-sky-500 hover:underline"
+                >
                   refund policy
                 </a>{" "}
                 and{" "}
-                <a href="#" className="text-sky-500 hover:underline">
+                <a
+                  href="/privacyPolicy"
+                  className="text-sky-500 hover:underline"
+                >
                   privacy policy
-                </a>.
+                </a>
+                .
               </span>
             </label>
           </div>
 
           <button
-            onClick={handleSubmit}
+            type="submit"
             className="w-full mt-6 bg-sky-700 hover:bg-sky-800 text-white font-semibold py-3 rounded-xl transition-all shadow-md"
           >
             💳 Proceed to Payment
           </button>
+        </motion.form>
+
+        {/* Right Side: Summary */}
+        <motion.div
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+          className="bg-gray-100 dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700"
+        >
+          <h3 className="text-xl font-semibold text-sky-600 mb-4">
+            {course?.title || "Course Title"}
+          </h3>
+
+          <div className="text-gray-700 dark:text-gray-300 space-y-2">
+            <div className="flex justify-between">
+              <span>Course Fee</span>
+              <span>{course?.price ? `${course.price} BDT` : "N/A"}</span>
+            </div>
+            <div className="flex justify-between">
+              <span>Discount</span>
+              <span>
+                {course?.discountPrice
+                  ? course.price - course.discountPrice
+                  : 0}{" "}
+                BDT
+              </span>
+            </div>
+            <hr className="my-2 border-gray-300 dark:border-gray-700" />
+            <div className="flex justify-between font-semibold text-gray-900 dark:text-gray-100">
+              <span>Total</span>
+              <span className="text-sky-600">
+                {course?.discountPrice > 0
+                  ? course.discountPrice
+                  : course?.price}{" "}
+                BDT
+              </span>
+            </div>
+          </div>
         </motion.div>
       </div>
     </div>
