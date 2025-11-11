@@ -53,7 +53,7 @@ const Dashboard = () => {
       { to: "/dashboard/allReviews", icon: <FaStar />, label: "Reviews" },
       { to: "/dashboard/FooterInfo", icon: <FaInfoCircle />, label: "Logo & Info" },
       { to: "/dashboard/allPolicies", icon: <MdPrivacyTip />, label: "Policies" },
-      { to: "/dashboard/settings", icon: <FaCog />, label: "Settings" },
+      // { to: "/dashboard/settings", icon: <FaCog />, label: "Settings" },
       { to: "/dashboard/profile", icon: <FaUserCircle />, label: "Profile" },
     ];
   } else if (userRole === "manager") {

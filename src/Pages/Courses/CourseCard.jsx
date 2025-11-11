@@ -36,9 +36,8 @@ export default function CourseCard() {
 
   return (
     <div className="p-6 bg-white min-h-screen max-w-7xl mx-auto">
-
       <h2 className="text-4xl font-extrabold text-center mb-10 bg-linear-to-r from-sky-600 to-blue-600 bg-clip-text text-transparent leading-tight">
-      Our Popular Courses
+        Our Popular Courses
       </h2>
 
       {/* Tabs Section */}
@@ -92,7 +91,7 @@ export default function CourseCard() {
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.3 }}
                   whileHover={{ scale: 1.03 }}
-                  className="relative bg-linear-to-b from-[#0e1629] to-[#1b2738] rounded-2xl overflow-visible shadow-xl border border-gray-700 text-white"
+                  className="relative bg-white rounded-2xl overflow-visible shadow-xl border border-gray-700 text-black"
                 >
                   {/* Category Tag - OUTSIDE Image */}
                   <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-sky-600 px-5 py-1.5 text-sm rounded-full font-semibold shadow-md z-20">
@@ -129,12 +128,12 @@ export default function CourseCard() {
                       </p>
                     </div>
 
-                    <p className="text-lg font-semibold text-sky-300 mb-3">
+                    <p className="text-lg font-semibold text-sky-500 mb-3">
                       এই কোর্সে থাকছে
                     </p>
 
                     {features.length > 0 ? (
-                      <ul className="text-left text-gray-300 space-y-2 mb-5">
+                      <ul className="text-left text-gray-900 space-y-2 mb-5">
                         {features.map((item, i) => (
                           <li key={i} className="flex items-start gap-2">
                             <CheckCircle
@@ -152,12 +151,11 @@ export default function CourseCard() {
                     )}
 
                     <button
-  onClick={() => navigate(`/course/${course._id}`)}
-  className="bg-sky-600 hover:bg-sky-700 px-5 py-2 rounded-lg font-medium shadow transition-all"
->
-  Details →
-</button>
-
+                      onClick={() => navigate(`/course/${course._id}`)}
+                      className="bg-sky-500 hover:bg-sky-600 px-5 py-2 rounded-lg font-medium shadow transition-all"
+                    >
+                      Details →
+                    </button>
                   </div>
                 </motion.div>
               );

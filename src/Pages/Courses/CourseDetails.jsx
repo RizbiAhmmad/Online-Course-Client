@@ -140,7 +140,7 @@ const handleEnroll = () => {
         <motion.div
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="bg-linear-to-b from-[#0e1629] to-[#1b2738] text-white rounded-2xl shadow-xl overflow-hidden border border-gray-700 sticky top-20"
+          className="bg-white text-black rounded-2xl shadow-xl overflow-hidden border border-gray-700 sticky top-20"
         >
           <img
             src={course.thumbnail}
@@ -164,14 +164,14 @@ const handleEnroll = () => {
             </div>
 
             {/* Duration & Level */}
-            <div className="flex items-center gap-3 text-gray-300">
+            <div className="flex items-center gap-3 text-gray-900">
               <Clock size={18} /> <span>{course.duration}</span>
               <GraduationCap size={18} /> <span>{course.level}</span>
             </div>
 
             {/* Features */}
             {course.shortdescription && (
-              <ul className="mt-3 text-gray-300 space-y-2 text-sm">
+              <ul className="mt-3 text-gray-900 space-y-2 text-sm">
                 {course.shortdescription
                   .split("\n")
                   .filter((line) => line.trim().length > 0)

@@ -3,6 +3,7 @@ import Banner from './Banner';
 import Reviews from './Reviews';
 import StatsSection from './StatsSection';
 import CourseCard from '../Courses/CourseCard';
+import ReviewSection from './ReviewSection';
 
 const Home = () => {
     return (
@@ -11,6 +12,7 @@ const Home = () => {
             <CourseCard></CourseCard>
             <Reviews></Reviews>
             <StatsSection></StatsSection>
+            <ReviewSection></ReviewSection>
         </div>
     );
 };
