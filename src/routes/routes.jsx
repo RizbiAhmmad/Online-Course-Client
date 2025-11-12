@@ -28,6 +28,9 @@ import TermsConditions from "@/Pages/Home/TermsConditions";
 import CourseDetails from "@/Pages/Courses/CourseDetails";
 import EnrollForm from "@/Pages/Courses/EnrollForm";
 import PrivateRoute from "./PrivateRoute";
+import SuccessPage from "@/Pages/Courses/SuccessPage";
+import FailPage from "@/Pages/Courses/FailPage";
+import CancelPage from "@/Pages/Courses/CancelPage";
 
 export const router = createBrowserRouter([
   {
@@ -78,6 +81,19 @@ export const router = createBrowserRouter([
         path: "TermsAndConditions",
         element: <TermsConditions />,
       },
+      {
+        path: "/payment/success",
+        element: <SuccessPage />,
+      },
+      {
+        path: "/payment/fail",
+        element: <FailPage />,
+      },
+      {
+        path: "/payment/cancel",
+        element: <CancelPage />,
+      },
+      
     ],
   },
 

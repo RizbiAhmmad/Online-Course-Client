@@ -38,31 +38,35 @@ export default function CheckoutPage() {
     }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!formData.agree) {
-      Swal.fire(
-        "Please Agree",
-        "You must agree to the terms & conditions.",
-        "info"
-      );
-      return;
-    }
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  if (!formData.agree) {
+    Swal.fire("Please Agree", "You must agree to the terms & conditions.", "info");
+    return;
+  }
 
-    try {
-      await axiosPublic.post("/enrollments", {
-        ...formData,
-        courseId: id,
-        courseTitle: course?.title,
-        coursePrice:
-          course?.discountPrice > 0 ? course.discountPrice : course?.price,
-        date: new Date(),
-      });
-      Swal.fire("Success!", "Enrollment successful!", "success");
-    } catch {
-      Swal.fire("Error", "Something went wrong!", "error");
+  try {
+    const paymentInfo = {
+      courseId: id,
+      courseTitle: course?.title,
+      amount: course?.discountPrice > 0 ? course.discountPrice : course?.price,
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      address: formData.address,
+    };
+
+    const res = await axiosPublic.post("/initiate-payment", paymentInfo);
+    if (res.data.url) {
+      window.location.replace(res.data.url); // Redirect to SSLCommerz Gateway
+    } else {
+      Swal.fire("Error", "Unable to redirect to payment gateway!", "error");
     }
-  };
+  } catch (err) {
+    Swal.fire("Error", "Something went wrong while processing payment!", "error");
+  }
+};
+
 
   // Loading state
   if (!course) return <LoadingPage></LoadingPage>;
