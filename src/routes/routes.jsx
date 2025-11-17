@@ -31,6 +31,8 @@ import PrivateRoute from "./PrivateRoute";
 import SuccessPage from "@/Pages/Courses/SuccessPage";
 import FailPage from "@/Pages/Courses/FailPage";
 import CancelPage from "@/Pages/Courses/CancelPage";
+import AllEnrollments from "@/Pages/Dashboard/Admin/AllEnrollments";
+import MyEnrollments from "@/Pages/Dashboard/User/MyEnrollments";
 
 export const router = createBrowserRouter([
   {
@@ -51,7 +53,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/enroll/:id",
-        element: <PrivateRoute><EnrollForm /></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <EnrollForm />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/login",
@@ -93,7 +99,6 @@ export const router = createBrowserRouter([
         path: "/payment/cancel",
         element: <CancelPage />,
       },
-      
     ],
   },
 
@@ -160,6 +165,14 @@ export const router = createBrowserRouter([
       {
         path: "allPolicies",
         element: <AllPolicies />,
+      },
+      {
+        path: "enrollments",
+        element: <AllEnrollments></AllEnrollments>,
+      },
+      {
+        path: "enrollments/:email",
+        element: <MyEnrollments></MyEnrollments>,
       },
       {
         path: "profile",

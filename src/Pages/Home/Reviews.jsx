@@ -41,12 +41,12 @@ const Reviews = () => {
             disableOnInteraction: false,
           }}
           pagination={{ clickable: true }}
-          navigation={true}
+          navigation={false}
           modules={[Autoplay, Pagination, Navigation]}
           className="mySwiper"
           breakpoints={{
             0: { slidesPerView: 1 },
-            768: { slidesPerView: 2 },
+            768: { slidesPerView: 3 },
           }}
         >
           {reviews.map((review, idx) => (

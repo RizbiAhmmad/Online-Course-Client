@@ -162,7 +162,7 @@ export default function CourseCard() {
             })
           ) : (
             <p className="text-center col-span-full text-gray-400">
-              No courses found in this category.
+              
             </p>
           )}
         </AnimatePresence>

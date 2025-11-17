@@ -53,7 +53,8 @@ const Dashboard = () => {
       { to: "/dashboard/allReviews", icon: <FaStar />, label: "Reviews" },
       { to: "/dashboard/FooterInfo", icon: <FaInfoCircle />, label: "Logo & Info" },
       { to: "/dashboard/allPolicies", icon: <MdPrivacyTip />, label: "Policies" },
-      // { to: "/dashboard/settings", icon: <FaCog />, label: "Settings" },
+      { to: "/dashboard/enrollments", icon: <FaCog />, label: "Enrollments" },
+      { to: "/dashboard/enrollments/:email", icon: <FaCog />, label: "My Enrollments" },
       { to: "/dashboard/profile", icon: <FaUserCircle />, label: "Profile" },
     ];
   } else if (userRole === "manager") {
@@ -82,6 +83,7 @@ const Dashboard = () => {
     menuItems = [
       { to: "/", icon: <FaHome />, label: "Home" },
       { to: "/dashboard/myCourses", icon: <FaBookReader />, label: "My Courses" },
+      { to: "/dashboard/enrollments/:email", icon: <FaCog />, label: "My Enrollments" },
       { to: "/dashboard/profile", icon: <FaUserCircle />, label: "Profile" },
     ];
   }
@@ -89,35 +91,36 @@ const Dashboard = () => {
   return (
     <div className="flex min-h-screen bg-gray-50">
       {/* Sidebar Desktop */}
-      <aside className="hidden md:flex md:flex-col md:w-64 bg-white shadow-lg border-r border-gray-200">
-        <div className="flex items-center justify-center py-4 border-b">
-          <h2 className="text-xl font-bold text-sky-500">Dashboard</h2>
-        </div>
-        <ul className="flex-1 overflow-y-auto p-4 space-y-2">
-          {menuItems.map((item, idx) => (
-            <li key={idx}>
-              <NavLink
-                to={item.to}
-                className={({ isActive }) =>
-                  `flex items-center gap-3 px-3 py-2 rounded-lg transition-colors ${
-                    isActive
-                      ? "bg-linear-to-r from-sky-500 to-purple-500 text-white"
-                      : "text-gray-700 hover:bg-gray-100"
-                  }`
-                }
-              >
-                {item.icon}
-                <span>{item.label}</span>
-              </NavLink>
-            </li>
-          ))}
-        </ul>
-        <div className="px-4 py-3 border-t border-gray-200 text-sm text-gray-600 text-center">
-          <span className="font-semibold text-gray-800">
-            {user.displayName || "User"}
-          </span>
-        </div>
-      </aside>
+      <aside className="hidden md:flex md:flex-col md:w-64 bg-white shadow-lg border-r border-gray-200 h-screen sticky top-0">
+  <div className="flex items-center justify-center py-4 border-b">
+    <h2 className="text-xl font-bold text-sky-500">Dashboard</h2>
+  </div>
+  <ul className="flex-1 overflow-y-auto p-4 space-y-2">
+    {menuItems.map((item, idx) => (
+      <li key={idx}>
+        <NavLink
+          to={item.to}
+          className={({ isActive }) =>
+            `flex items-center gap-3 px-3 py-2 rounded-lg transition-colors ${
+              isActive
+                ? "bg-linear-to-r from-sky-500 to-purple-500 text-white"
+                : "text-gray-700 hover:bg-gray-100"
+            }`
+          }
+        >
+          {item.icon}
+          <span>{item.label}</span>
+        </NavLink>
+      </li>
+    ))}
+  </ul>
+  <div className="px-4 py-3 border-t border-gray-200 text-sm text-gray-600 text-center">
+    <span className="font-semibold text-gray-800">
+      {user.displayName || "User"}
+    </span>
+  </div>
+</aside>
+
 
       {/* Sidebar Mobile */}
       <AnimatePresence>
@@ -168,7 +171,7 @@ const Dashboard = () => {
       )}
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col">
+      <div className="flex-1 flex flex-col overflow-y-auto">
         {/* Top Navbar */}
         <div className="sticky top-0 z-20 bg-sky-100 border-b border-gray-200 flex items-center justify-between px-4 py-4 shadow-sm">
           <button onClick={toggleSidebar} className="md:hidden">
